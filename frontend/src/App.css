@@ -36,3 +36,75 @@
     transform: rotate(360deg);
   }
 }
+
+/* ===== NAVBAR ===== */
+.navbar {
+  height: 64px;                 /* fixed clean height */
+  display: flex;
+  align-items: center;          /* vertical centering */
+  justify-content: space-between;
+  padding: 0 28px;
+  background: linear-gradient(90deg, #667eea, #764ba2);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+
+/* Full logo image (text already inside image) */
+.navbar-logo {
+  display: flex;
+  align-items: center;
+}
+
+.navbar-logo img {
+  margin-left: 30px;
+  height: 50px;        /* 🔥 key value */
+  width: 100%;
+  object-fit: contain;
+}
+
+.navbar-links {
+  display: flex;
+  align-items: center;
+}
+
+.navbar-links a {
+  margin-left: 22px;
+  color: white;
+  text-decoration: none;
+  font-size: 15px;
+  font-weight: 500;
+  position: relative;
+}
+
+/* Hover underline effect */
+.navbar-links a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -5px;
+  width: 0%;
+  height: 2px;
+  background: white;
+  transition: width 0.3s;
+}
+
+.navbar-links a:hover::after {
+  width: 100%;
+}
+
+/* ===== MOBILE NAVBAR ===== */
+@media (max-width: 600px) {
+  .navbar {
+    height: 56px;
+    padding: 0 18px;
+  }
+
+  .navbar-logo img {
+    height: 30px;
+  }
+
+  .navbar-links a {
+    font-size: 14px;
+  }
+}
+
