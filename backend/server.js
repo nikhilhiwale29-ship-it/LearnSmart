@@ -8,10 +8,7 @@ const app = express();
 // middlewares
 app.use(express.json());
 app.use(cors({
-  origin: [
-    "http://localhost:3000",
-    "https://learnsmart5.netlify.app"
-  ],
+  origin: "*",   // later you can restrict to Netlify domain
   methods: ["GET", "POST", "PUT", "DELETE"],
   credentials: true
 }));
