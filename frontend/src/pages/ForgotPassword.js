@@ -17,18 +17,20 @@ function ForgotPassword() {
         body: JSON.stringify({ email }),
       });
 
-      const data = await res.json();
+      const text = await res.text();      // 👈 read raw response
+    const data = text ? JSON.parse(text) : {};
 
-      if (res.ok) {
-        alert("OTP sent to your email");
-        setOtpSent(true);
-      } else {
-        alert(data.message || "Failed to send OTP");
-      }
-    } catch (error) {
-      alert("Server error");
+    if (res.ok) {
+      alert(data.message || "OTP sent to your email");
+      setOtpSent(true);
+    } else {
+      alert(data.message || "Failed to send OTP");
     }
-  };
+  } catch (error) {
+    console.error(error);
+    alert("Server error");
+  }
+};
 
   return (
     <div className="auth-container">
