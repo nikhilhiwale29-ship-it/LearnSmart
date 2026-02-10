@@ -2,6 +2,8 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../styles/auth.css";
 
+export const API_BASE_URL = "https://learnsmart-efgl.onrender.com";
+
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -11,20 +13,19 @@ function Login() {
     e.preventDefault();
 
     try {
-      const res = await fetch("http://localhost:5000/api/auth/login", {
+      const res = await fetch(`${API_BASE_URL}/api/auth/login`, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+        },
         body: JSON.stringify({ email, password }),
       });
 
       const data = await res.json();
 
       if (res.ok) {
-        // ✅ SAVE LOGIN DATA
         localStorage.setItem("token", data.token);
         localStorage.setItem("user", JSON.stringify(data.user));
-
-        // ✅ REDIRECT TO DASHBOARD
         navigate("/dashboard");
       } else {
         alert(data.message || "Login failed");
@@ -68,7 +69,8 @@ function Login() {
         </form>
 
         <p className="signup-link">
-          Don’t have an account? <span onClick={() => navigate("/signup")}>Sign Up</span>
+          Don’t have an account?{" "}
+          <span onClick={() => navigate("/signup")}>Sign Up</span>
         </p>
       </div>
     </div>

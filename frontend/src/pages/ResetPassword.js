@@ -1,6 +1,8 @@
 import { useState } from "react";
 import "../styles/auth.css";
 
+export const API_BASE_URL = "https://learnsmart-efgl.onrender.com";
+
 function ResetPassword() {
   const [email, setEmail] = useState("");
   const [otp, setOtp] = useState("");
@@ -10,7 +12,7 @@ function ResetPassword() {
     e.preventDefault();
 
     try {
-      const res = await fetch("http://localhost:5000/api/auth/reset-password", {
+      const res = await fetch(`${API_BASE_URL}/api/auth/login`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

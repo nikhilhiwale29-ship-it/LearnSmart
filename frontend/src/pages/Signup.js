@@ -1,6 +1,8 @@
 import { useState } from "react";
 import "../styles/auth.css";
 
+export const API_BASE_URL = "https://learnsmart-efgl.onrender.com";
+
 function Signup() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -17,7 +19,7 @@ function Signup() {
     }
 
     try {
-      const res = await fetch("http://localhost:5000/api/auth/register", {
+      const res = await fetch(`${API_BASE_URL}/api/auth/login`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
