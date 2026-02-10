@@ -110,21 +110,23 @@ exports.sendOtp = async (req, res) => {
     await user.save();
 
     await transporter.sendMail({
-      from: '"LearnSmart" <no-reply@learnsmart.com>',
+      from: `"LearnSmart" <${process.env.EMAIL_USER}>`,
       to: email,
       subject: "Password Reset OTP",
       text: `Your OTP is ${otp}. Valid for 10 minutes.`,
     });
 
-    res.json({ message: "OTP sent successfully" });
+    return res.status(200).json({
+      success: true,
+      message: "OTP sent successfully",
+    });
   } catch (error) {
-  console.error("SEND OTP ERROR 👉", error);
-  res.status(500).json({ 
-    message: "Failed to send OTP",
-    error: error.message 
-  });
-}
-
+    console.error("SEND OTP ERROR 👉", error);
+    return res.status(500).json({
+      success: false,
+      message: "Failed to send OTP",
+    });
+  }
 };
 
 /* ================= RESET PASSWORD ================= */
