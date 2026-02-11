@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "../styles/auth.css";
 
-export const API_BASE_URL = "https://learnsmart-efgl.onrender.com";
+export const API_BASE_URL = "http://localhost:5000";
 
 function ResetPassword() {
   const [email, setEmail] = useState("");
