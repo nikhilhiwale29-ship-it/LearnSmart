@@ -2,7 +2,6 @@ const User = require("../models/User");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const crypto = require("crypto");
-const nodemailer = require("nodemailer");
 
 /* ================= REGISTER ================= */
 exports.register = async (req, res) => {
@@ -82,38 +81,45 @@ exports.login = async (req, res) => {
 };
 
 
-/* ================= MAILTRAP TRANSPORTER ================= */
-const transporter = nodemailer.createTransport({
-  host: process.env.EMAIL_HOST,
-  port: process.env.EMAIL_PORT,
-  secure: false, // IMPORTANT for 587
-  auth: {
-    user: process.env.EMAIL_USER,
-    pass: process.env.EMAIL_PASS,
-  },
-});
+const sgMail = require("@sendgrid/mail");
+
+// Set SendGrid API Key
+sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
 /* ================= SEND OTP ================= */
 exports.sendOtp = async (req, res) => {
   try {
     const { email } = req.body;
 
+    if (!email) {
+      return res.status(400).json({ message: "Email is required" });
+    }
+
     const user = await User.findOne({ email });
+
     if (!user) {
       return res.status(404).json({ message: "User not found" });
     }
 
+    // Generate 6 digit OTP
     const otp = Math.floor(100000 + Math.random() * 900000).toString();
 
     user.resetOtp = otp;
-    user.resetOtpExpiry = Date.now() + 10 * 60 * 1000;
+    user.resetOtpExpiry = Date.now() + 10 * 60 * 1000; // 10 minutes
     await user.save();
 
-    await transporter.sendMail({
-      from: `"LearnSmart" <${process.env.EMAIL_USER}>`,
+    // Send Email
+    await sgMail.send({
       to: email,
-      subject: "Password Reset OTP",
+      from: process.env.EMAIL_USER, // verified sender
+      subject: "LearnSmart - Password Reset OTP",
       text: `Your OTP is ${otp}. Valid for 10 minutes.`,
+      html: `
+        <h2>Password Reset</h2>
+        <p>Your OTP is:</p>
+        <h1>${otp}</h1>
+        <p>This OTP is valid for 10 minutes.</p>
+      `,
     });
 
     return res.status(200).json({
@@ -134,6 +140,10 @@ exports.resetPasswordWithOtp = async (req, res) => {
   try {
     const { email, otp, newPassword } = req.body;
 
+    if (!email || !otp || !newPassword) {
+      return res.status(400).json({ message: "All fields are required" });
+    }
+
     const user = await User.findOne({ email });
 
     if (
@@ -144,14 +154,25 @@ exports.resetPasswordWithOtp = async (req, res) => {
       return res.status(400).json({ message: "Invalid or expired OTP" });
     }
 
-    user.password = await bcrypt.hash(newPassword, 10);
+    // Hash new password
+    const hashedPassword = await bcrypt.hash(newPassword, 10);
+
+    user.password = hashedPassword;
     user.resetOtp = undefined;
     user.resetOtpExpiry = undefined;
 
     await user.save();
 
-    res.json({ message: "Password reset successful" });
+    return res.status(200).json({
+      success: true,
+      message: "Password reset successful",
+    });
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    console.error("RESET PASSWORD ERROR 👉", error);
+    return res.status(500).json({
+      success: false,
+      message: "Server error",
+    });
   }
 };
+
