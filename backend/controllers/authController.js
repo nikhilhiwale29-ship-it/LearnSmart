@@ -115,10 +115,12 @@ exports.sendOtp = async (req, res) => {
       subject: "LearnSmart - Password Reset OTP",
       text: `Your OTP is ${otp}. Valid for 10 minutes.`,
       html: `
-        <h2>Password Reset</h2>
-        <p>Your OTP is:</p>
-        <h1>${otp}</h1>
-        <p>This OTP is valid for 10 minutes.</p>
+        <div style="font-family: Arial; padding:20px;">
+          <h2>LearnSmart Password Reset</h2>
+          <p>Your OTP code is:</p>
+          <h1 style="color:#6a11cb;">${otp}</h1>
+          <p>This code will expire in 10 minutes.</p>
+        </div>
       `,
     });
 
