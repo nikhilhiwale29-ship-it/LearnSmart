@@ -2,7 +2,7 @@ import { useState, useEffect, useRef, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import "../styles/auth.css";
 
-const API_BASE_URL = process.env.REACT_APP_API_URL;
+const API_BASE_URL = process.env.REACT_APP_API_URL || "http://localhost:5000";
 const GOOGLE_CLIENT_ID = "935060499007-pq65iug7ispeh2aevjnqsojh2d70v1ja.apps.googleusercontent.com";
 const GITHUB_CLIENT_ID = "Ov23lisWIacShYwhK0tn";
 
