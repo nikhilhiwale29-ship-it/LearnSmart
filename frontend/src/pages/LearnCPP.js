@@ -1,3 +1,4 @@
+/* eslint-disable no-new-func */
 import { useState } from "react";
 import "../styles/learn.css";
 import Navbar from "../components/Navbar";
