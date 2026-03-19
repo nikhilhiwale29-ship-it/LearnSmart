@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "../styles/auth.css";
 
-export const API_BASE_URL = "https://learnsmart-efgl.onrender.com" || "http://localhost:5000";
+const API_BASE_URL = process.env.REACT_APP_API_URL;
 
 function Signup() {
   const [name, setName] = useState("");
