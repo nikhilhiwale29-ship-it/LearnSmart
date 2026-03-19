@@ -1,0 +1,299 @@
+/* ===============================
+   GLOBAL CONTAINER
+==================================*/
+
+.learn-page {
+  display: flex;
+  /* Adjust this to exactly match your Navbar height (e.g., 80px) */
+  height: calc(100vh - 80px); 
+  background: #0f172a;
+  color: white;
+  overflow: hidden;
+  /* Add this to prevent the container itself from moving */
+  position: fixed; 
+  bottom: 0;
+  width: 100%;
+}
+
+/* ===============================
+   SIDEBAR (RENAMED TO AVOID CONFLICT)
+==================================*/
+
+.learn-sidebar {
+  width: 250px;
+  min-width: 250px;
+  background: #020617;
+  padding: 20px;
+  overflow-y: auto;
+  height: 100%;
+  border-right: 1px solid #1e293b;
+}
+
+.topic {
+  padding: 12px;
+  cursor: pointer;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  transition: all 0.25s ease;
+  font-size: 14px;
+}
+
+.topic:hover {
+  background: #1e293b;
+  transform: translateX(3px);
+}
+
+.topic.active {
+  background: #6366f1;
+  box-shadow: 0 0 10px rgba(99, 102, 241, 0.4);
+}
+
+/* ===============================
+   CONTENT SECTION
+==================================*/
+
+.content {
+  flex: 1;
+  min-width: 0;
+  padding: 20px;
+  overflow-y: auto;
+}
+
+.content h2 {
+  margin-bottom: 10px;
+  font-size: 22px;
+}
+
+.content p {
+  margin-bottom: 15px;
+  color: #cbd5f5;
+}
+
+/* ===============================
+   CODE EDITOR
+==================================*/
+
+.editor {
+  width: 100%;
+  height: 220px;
+  background: #020617;
+  color: #38bdf8;
+  border: 1px solid #1e293b;
+  border-radius: 10px;
+  padding: 15px;
+  margin-top: 10px;
+  font-family: monospace;
+  resize: none;
+  outline: none;
+  transition: 0.2s;
+}
+
+.editor:focus {
+  border-color: #6366f1;
+}
+
+/* ===============================
+   RUN BUTTON
+==================================*/
+
+.run-btn {
+  margin-top: 12px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 10px;
+  background: #6366f1;
+  color: white;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.run-btn:hover {
+  background: #4f46e5;
+  transform: scale(1.05);
+}
+
+/* ===============================
+   PREVIEW PANEL
+==================================*/
+
+.preview {
+  width: 35%;
+  min-width: 300px;
+  background: white;
+  height: 100%;
+  border-left: 1px solid #1e293b;
+}
+
+.preview iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+.lesson-content h3 {
+  margin-top: 10px;
+  color: #60a5fa;
+}
+
+.lesson-content h4 {
+  margin-top: 10px;
+  color: #a78bfa;
+}
+
+.lesson-content p {
+  margin: 8px 0;
+  line-height: 1.6;
+}
+
+.lesson-content ul {
+  margin: 10px 0;
+  padding-left: 20px;
+}
+
+.lesson-content li {
+  margin-bottom: 6px;
+}
+
+.input-box {
+  width: 100%;
+  padding: 8px;
+  margin-top: 10px;
+  border-radius: 6px;
+}
+
+.console {
+  background: black;
+  color: #00ff00;
+  padding: 15px;
+  margin-top: 10px;
+  height: 200px;
+  overflow-y: auto;
+  border-radius: 10px;
+  font-family: monospace;
+}
+
+.console pre {
+  margin: 0;
+  white-space: pre-wrap;
+}
+/* ===============================
+   TABLET VIEW (<=1024px)
+==================================*/
+
+@media (max-width: 1024px) {
+
+  .learn-sidebar {
+    width: 200px;
+    min-width: 200px;
+    padding: 15px;
+  }
+
+  .content {
+    padding: 15px;
+  }
+
+  .editor {
+    height: 200px;
+  }
+
+}
+
+/* ===============================
+   MOBILE VIEW (<=768px)
+==================================*/
+
+@media (max-width: 768px) {
+
+  .learn-page {
+    flex-direction: column;
+    height: auto;
+  }
+
+  /* Sidebar becomes horizontal scroll */
+  .learn-sidebar {
+    width: 100%;
+    display: flex;
+    overflow-x: auto;
+    padding: 10px;
+    gap: 10px;
+    background: #020617;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    border-right: none;
+  }
+
+  .learn-sidebar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .topic {
+    min-width: 140px;
+    text-align: center;
+    font-size: 13px;
+    padding: 10px;
+    white-space: nowrap;
+    margin-bottom: 0;
+  }
+
+  /* Content */
+  .content {
+    padding: 15px;
+  }
+
+  .content h2 {
+    font-size: 20px;
+  }
+
+  .content p {
+    font-size: 14px;
+  }
+
+  /* Editor */
+  .editor {
+    height: 180px;
+    font-size: 13px;
+  }
+
+  /* Button */
+  .run-btn {
+    width: 100%;
+    padding: 12px;
+    font-size: 14px;
+  }
+
+  /* Preview */
+  .preview {
+    width: 100%;
+    height: 250px;
+    margin-top: 10px;
+    border-left: none;
+    border-radius: 10px;
+    overflow: hidden;
+  }
+
+}
+
+/* ===============================
+   SMALL MOBILE (<=480px)
+==================================*/
+
+@media (max-width: 480px) {
+
+  .topic {
+    min-width: 120px;
+    font-size: 12px;
+  }
+
+  .editor {
+    height: 150px;
+  }
+
+  .preview {
+    height: 200px;
+  }
+
+  .content h2 {
+    font-size: 18px;
+  }
+
+}

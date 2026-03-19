@@ -66,7 +66,7 @@ function ResetPassword() {
             required
           />
 
-          <button type="submit">Reset Password</button>
+          <button type="submit" onClick={() => (window.location.href = "/auth")}>Reset Password</button>
         </form>
       </div>
     </div>

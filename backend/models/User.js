@@ -19,11 +19,6 @@ const UserSchema = new mongoose.Schema(
     },
     resetOtp: String,
     resetOtpExpiry: Date,
-
-    semester: {
-      type: String,
-      required: true,
-    },
   },
   { timestamps: true }
 );

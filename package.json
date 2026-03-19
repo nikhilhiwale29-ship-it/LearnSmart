@@ -1,0 +1,34 @@
+{
+  "dependencies": {
+    "@react-three/postprocessing": "^3.0.4",
+    "@tsparticles/react": "^3.0.0",
+    "@tsparticles/slim": "^3.9.1",
+    "@types/three": "^0.182.0",
+    "body-parser": "^2.2.2",
+    "cors": "^2.8.6",
+    "express": "^5.2.1",
+    "framer-motion": "^12.34.3",
+    "google-auth-library": "^10.6.1",
+    "lucide-react": "^0.564.0",
+    "react-icons": "^5.5.0"
+  },
+  "name": "mern-app",
+  "version": "1.0.0",
+  "description": "\"# mern-app\"",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nikhilhiwale29-ship-it/LearnSmart.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/nikhilhiwale29-ship-it/LearnSmart/issues"
+  },
+  "homepage": "https://github.com/nikhilhiwale29-ship-it/LearnSmart#readme"
+}

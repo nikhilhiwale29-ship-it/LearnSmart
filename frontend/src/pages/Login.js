@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../styles/auth.css";
-export const API_BASE_URL = "https://learnsmart-efgl.onrender.com";
+export const API_BASE_URL = "https://learnsmart-efgl.onrender.com" || "http://localhost:5000";
 
 function Login() {
   const [email, setEmail] = useState("");

@@ -1,0 +1,132 @@
+/* Container using the dark background from your screenshot */
+.quiz-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 20px;
+  background-color: #0f172a; /* Deep dark blue/black */
+  font-family: 'Inter', 'Segoe UI', sans-serif;
+  color: #ffffff;
+}
+
+/* Glassmorphism Card Effect */
+.quiz-card, .result-card {
+  background: #1e293b; /* Dark slate */
+  width: 100%;
+  max-width: 650px;
+  padding: 40px;
+  border-radius: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+  text-align: center;
+}
+
+/* Progress Bar - Sleek & Subtle */
+.progress-bar {
+  width: 100%;
+  height: 6px;
+  background-color: #334155;
+  border-radius: 10px;
+  margin-bottom: 30px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #8b5cf6, #d946ef); /* Purple to Pink neon */
+  transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Question Typography */
+.question-header h3 {
+  color: #94a3b8;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-bottom: 15px;
+}
+
+.question-text {
+  font-size: 24px;
+  font-weight: 600;
+  color: #f1f5f9;
+  margin-bottom: 35px;
+  line-height: 1.5;
+}
+
+/* Options Grid */
+.options-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+}
+
+.option-button {
+  padding: 18px 24px;
+  font-size: 16px;
+  text-align: left;
+  background: #334155;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  color: #cbd5e1;
+  outline: none;
+}
+
+.option-button:hover:not(:disabled) {
+  background-color: #475569;
+  transform: translateX(10px);
+  border-color: #8b5cf6;
+}
+
+/* Feedback Neon States */
+.option-button.correct {
+  background-color: rgba(16, 185, 129, 0.2) !important; /* Emerald Neon */
+  border: 1px solid #10b981 !important;
+  color: #10b981;
+  box-shadow: 0 0 15px rgba(16, 185, 129, 0.3);
+}
+
+.option-button.wrong {
+  background-color: rgba(239, 68, 68, 0.2) !important; /* Rose Neon */
+  border: 1px solid #ef4444 !important;
+  color: #ef4444;
+  box-shadow: 0 0 15px rgba(239, 68, 68, 0.3);
+}
+
+/* Result Score Circle */
+.score-circle {
+  width: 140px;
+  height: 140px;
+  border: 4px solid #8b5cf6;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 30px auto;
+  font-size: 36px;
+  font-weight: 800;
+  color: #ffffff;
+  background: radial-gradient(circle, rgba(139, 92, 246, 0.2) 0%, transparent 70%);
+  box-shadow: 0 0 30px rgba(139, 92, 246, 0.4);
+}
+
+.result-card button {
+  padding: 14px 40px;
+  font-size: 16px;
+  font-weight: 600;
+  background: linear-gradient(135deg, #8b5cf6 0%, #d946ef 100%);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  box-shadow: 0 10px 20px rgba(217, 70, 239, 0.3);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.result-card button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 15px 30px rgba(217, 70, 239, 0.5);
+}
