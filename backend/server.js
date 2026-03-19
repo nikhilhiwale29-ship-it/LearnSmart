@@ -10,7 +10,11 @@ const app = express();
 // middlewares
 app.use(express.json());
 app.use(cors({
-  origin: ["http://localhost:3000", "https://learn-smart-kappa.vercel.app"],
+  origin: [
+    "http://localhost:3000",
+    "https://learn-smart-kappa.vercel.app",
+    "https://learn-smart-l136qrr1y-nikhil-hiwales-projects.vercel.app"
+  ],
   methods: ["GET", "POST", "PUT", "DELETE"],
   credentials: true
 }));
