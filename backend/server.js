@@ -28,8 +28,8 @@ const { spawn } = require("child_process");
 app.post("/run-python", (req, res) => {
   const { code, input } = req.body;
 
-  const python = spawn("py", ["-c", code]); // run code directly
-
+  const python = spawn("python3", ["-c", code]);
+  
   let output = "";
   let error = "";
 
