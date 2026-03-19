@@ -102,7 +102,7 @@ function LearnPython() {
   // 🔥 RUN PYTHON CODE FROM BACKEND
   const runCode = async () => {
     try {
-      const res = await fetch("http://localhost:5000/run-python", {
+      const res = await fetch(`${process.env.REACT_APP_API_URL || "http://localhost:5000"}/run-python`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
