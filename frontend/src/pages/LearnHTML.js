@@ -255,42 +255,11 @@ function LearnHTML() {
     ${runCode}
   `;
 
-  // ✅ INITIAL HISTORY STATE
-  useEffect(() => {
-    window.history.replaceState({ topicIndex: 0 }, "");
-  }, []);
-
-  // ✅ HANDLE BACK BUTTON
-  useEffect(() => {
-    const handleBack = (event) => {
-      if (event.state && event.state.topicIndex !== undefined) {
-        const index = event.state.topicIndex;
-
-        setActiveIndex(index);
-        setCode(topics[index].code);
-        setRunCode("");
-      } else {
-        setActiveIndex(0);
-        setCode(topics[0].code);
-        setRunCode("");
-      }
-    };
-
-    window.addEventListener("popstate", handleBack);
-
-    return () => {
-      window.removeEventListener("popstate", handleBack);
-    };
-  }, []);
-
   // ✅ TOPIC CHANGE
   const handleTopicChange = (index) => {
     setActiveIndex(index);
     setCode(topics[index].code);
     setRunCode("");
-
-    // push into browser history
-    window.history.pushState({ topicIndex: index }, "");
   };
 
   return (
