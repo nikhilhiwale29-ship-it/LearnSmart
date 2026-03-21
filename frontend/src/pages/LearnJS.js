@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 import { useState, useEffect } from "react";
 import "../styles/learn.css";
-import Navbar from "../components/Navbar";
+import Navbar from "../components/Nav";
 
 const topics = [
   {

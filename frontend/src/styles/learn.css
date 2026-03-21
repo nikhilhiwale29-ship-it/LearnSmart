@@ -1,20 +1,20 @@
 /* ===============================
    GLOBAL CONTAINER
 ==================================*/
-
 .learn-page {
   display: flex;
-  /* Adjust this to exactly match your Navbar height (e.g., 80px) */
-  height: calc(100vh - 80px); 
+  height: calc(100vh - 80px);
   background: #0f172a;
   color: white;
   overflow: hidden;
+  width: 100%;
+  position: fixed;    /* ← put back fixed */
+  bottom: 0;
 }
 
 /* ===============================
-   SIDEBAR (RENAMED TO AVOID CONFLICT)
+   SIDEBAR
 ==================================*/
-
 .learn-sidebar {
   width: 250px;
   min-width: 250px;
@@ -23,6 +23,7 @@
   overflow-y: auto;
   height: 100%;
   border-right: 1px solid #1e293b;
+  flex-shrink: 0; /* ← prevents sidebar from shrinking */
 }
 
 .topic {
@@ -47,12 +48,12 @@
 /* ===============================
    CONTENT SECTION
 ==================================*/
-
 .content {
   flex: 1;
   min-width: 0;
   padding: 20px;
   overflow-y: auto;
+  background: #0f172a;
 }
 
 .content h2 {
@@ -68,7 +69,6 @@
 /* ===============================
    CODE EDITOR
 ==================================*/
-
 .editor {
   width: 100%;
   height: 220px;
@@ -82,6 +82,7 @@
   resize: none;
   outline: none;
   transition: 0.2s;
+  box-sizing: border-box; /* ← prevents overflow */
 }
 
 .editor:focus {
@@ -91,7 +92,6 @@
 /* ===============================
    RUN BUTTON
 ==================================*/
-
 .run-btn {
   margin-top: 12px;
   padding: 10px 20px;
@@ -111,10 +111,10 @@
 /* ===============================
    PREVIEW PANEL
 ==================================*/
-
 .preview {
   width: 35%;
   min-width: 300px;
+  flex-shrink: 0; /* ← prevents preview from shrinking */
   background: white;
   height: 100%;
   border-left: 1px solid #1e293b;
@@ -125,6 +125,10 @@
   height: 100%;
   border: none;
 }
+
+/* ===============================
+   LESSON CONTENT
+==================================*/
 .lesson-content h3 {
   margin-top: 10px;
   color: #60a5fa;
@@ -171,16 +175,20 @@
   margin: 0;
   white-space: pre-wrap;
 }
+
 /* ===============================
    TABLET VIEW (<=1024px)
 ==================================*/
-
 @media (max-width: 1024px) {
-
   .learn-sidebar {
     width: 200px;
     min-width: 200px;
     padding: 15px;
+  }
+
+  .preview {
+    width: 25%;
+    min-width: 200px; /* ← reduce min-width */
   }
 
   .content {
@@ -190,60 +198,90 @@
   .editor {
     height: 200px;
   }
+}
 
+/* ← Hide preview when screen is too small for 3 columns */
+@media (max-width: 900px) and (min-width: 769px) {
+  .preview {
+    display: none;
+  }
 }
 
 /* ===============================
    MOBILE VIEW (<=768px)
 ==================================*/
-
 @media (max-width: 768px) {
   .learn-page {
     flex-direction: column;
     height: auto;
     min-height: 100vh;
-    overflow-y: auto;        /* ← Allow vertical scroll */
-    position: relative;      /* ← Override fixed */
+    overflow-y: auto;
+    position: relative;
     padding-bottom: 20px;
+    bottom: auto;
   }
 
   .learn-sidebar {
     width: 100%;
+    min-width: unset; /* ← reset min-width for mobile */
     display: flex;
+    flex-direction: row;
     overflow-x: auto;
+    overflow-y: hidden;
     padding: 10px;
     gap: 10px;
     background: #020617;
     position: sticky;
-    margin-bottom: 70px;
     top: 60px;
     z-index: 10;
     border-right: none;
-    height: auto;            /* ← Remove fixed height */
+    height: auto;
+    
+  }
+
+  .learn-sidebar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .topic {
+    min-width: 140px;
+    text-align: center;
+    font-size: 13px;
+    padding: 10px;
+    white-space: nowrap;
+    margin-bottom: 0;
+    flex-shrink: 0;
   }
 
   .content {
     padding: 15px;
-    overflow-y: visible;     /* ← Allow content to expand */
+    overflow-y: visible;
     height: auto;
+    width: 100%;
+    margin-top: 60px;
   }
 
   .preview {
     width: 100%;
+    min-width: unset; /* ← reset min-width for mobile */
     height: 250px;
     margin-top: 10px;
     border-left: none;
     border-radius: 10px;
     overflow: hidden;
   }
+
+  .run-btn {
+    width: 100%;
+    padding: 12px;
+    font-size: 14px;
+  }
 }
 
 /* ===============================
    SMALL MOBILE (<=480px)
 ==================================*/
-
 @media (max-width: 480px) {
-
   .topic {
     min-width: 120px;
     font-size: 12px;
@@ -260,5 +298,4 @@
   .content h2 {
     font-size: 18px;
   }
-
 }

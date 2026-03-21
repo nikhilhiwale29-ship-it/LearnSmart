@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars, no-new-func */
 import { useState } from "react";
 import "../styles/learn.css";
-import Navbar from "../components/Navbar";
+import Nav from "../components/Nav";
 
 const topics = [
   {
@@ -368,7 +368,7 @@ const runSimulatedC = (code, userInput) => {
 
   return (
     <>
-      <Navbar />
+      <Nav />
 
       <div className="learn-page">
 
