@@ -8,7 +8,7 @@ function Nav() {
         <p>Learn<span>Smart</span></p>
       </Link>
 
-      <div className="navbar-links">
+      <div className="navbar-link">
         <Link to="/home">Home</Link>
       </div>
     </nav>

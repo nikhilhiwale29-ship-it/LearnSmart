@@ -1,44 +1,13 @@
-.App {
-  text-align: center;
+body {
+    margin: 0;
+    padding: 0;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
 .home{
   padding-top: 70px;
+
 }
+
 /* ===== NAVBAR ===== */
 .navbar {
     width: 100%;
@@ -86,15 +55,18 @@
     transition: 0.3s ease;
 }
 
-/* Mobile adjustments */
-@media (max-width: 768px) {
-    .navbar {
-        padding: 0 20px;
-        height: 60px;
-    }
-    .navbar-logo p {
-        font-size: 22px;
-    }
+/* Existing stays same */
+
+/* 🔹 Improve links styling */
+.navbar-links {
+    display: flex;
+    gap: 25px;
+}
+
+.navbar-links a {
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
 }
 
 .navbar-links {
@@ -111,6 +83,19 @@
   position: relative;
 }
 
+.navbar-link {
+  display: flex;
+  align-items: center;
+}
+
+.navbar-link a {
+  margin-left: 22px;
+  color: white;
+  text-decoration: none;
+  font-size: 15px;
+  font-weight: 500;
+  position: relative;
+}
 /* Hover underline effect */
 .navbar-links a::after {
   content: "";
@@ -127,11 +112,40 @@
   width: 100%;
 }
 
+/* 🔥 Mobile Responsive */
+@media (max-width: 768px) {
+
+    .navbar {
+        padding: 10px 0px;
+        height: auto; /* allow height to grow */
+        flex-wrap: wrap; /* important */
+    }
+
+    .navbar-logo p {
+        font-size: 22px;
+    }
+
+    .navbar-links {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        margin-top: 10px;
+        flex-wrap: wrap; /* allows wrapping instead of overflow */
+        gap: 15px;
+    }
+
+    .navbar-links a {
+        font-size: 14px;
+    }
+}
+
 /* ===== MOBILE NAVBAR ===== */
 @media (max-width: 600px) {
   .navbar {
-    height: 56px;
+    height: auto;
     padding: 0 18px;
+    padding-bottom: 15px;
+    padding-top: 10px;
   }
 
   .navbar-logo img {
