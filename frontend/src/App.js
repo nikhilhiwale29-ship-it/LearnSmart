@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { lazy, Suspense } from "react";
 
 // ← Only these load immediately
@@ -50,6 +50,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/auth" element={<Auth />} />
+          <Route path="/login" element={<Navigate to="/auth" replace />} />
           <Route path="/forgot-password" element={<ForgotPassword />} />
           <Route path="/reset-password" element={<ResetPassword />} />
           <Route path="/home" element={<Home />} />

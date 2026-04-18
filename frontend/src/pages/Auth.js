@@ -32,14 +32,23 @@ function Auth() {
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (token) {
-      navigateRef.current("/dashboard", { replace: true });
+      navigate("/dashboard", { replace: true });
+    } else {
+      // CRITICAL: If no token, make sure we aren't stuck in "Loading" mode
+      setIsLoading(false); 
     }
-  }, []);
+  }, [navigate]);
 
   // --- 1. GITHUB AUTH LOGIC ---
-  const handleGithubLogin = () => {
-    window.location.href = `https://github.com/login/oauth/authorize?client_id=${GITHUB_CLIENT_ID}&scope=user:email`;
-  };
+  const handleGithubLogin = async () => {
+  try {
+    // Wake up the server first
+    await fetch(`${API_BASE_URL}/api/health`);
+  } catch (e) {}
+  
+  // Now redirect to GitHub (server is warm)
+  window.location.href = `https://github.com/login/oauth/authorize?client_id=${GITHUB_CLIENT_ID}&scope=user:email`;
+};
 
   useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search);
@@ -201,6 +210,12 @@ function Auth() {
       </div>
     );
   }
+
+  const handleLogout = () => {
+  localStorage.clear();
+  // 'replace: true' is the key to making the Back button go to the Home page
+  navigate("/auth", { replace: true }); 
+};
 
   return (
     <div className="auth-page-container">
